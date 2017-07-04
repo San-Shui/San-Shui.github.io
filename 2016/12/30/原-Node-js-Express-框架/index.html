@@ -1,0 +1,1506 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,node.js,express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp; Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。使用 Express 可以快速地搭建一个完整功能的网站。Express 框架核心特性：（1）、可以设置中间件来响应 HTTP 请求。（2）、定义了路由表用于执行不同的 HTTP 请求动作。（3）、可以通过向模板传递参数来动态渲染 HT">
+<meta name="keywords" content="JavaScript,node.js,express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js Express 框架">
+<meta property="og:url" content="http://yoursite.com/2016/12/30/原-Node-js-Express-框架/index.html">
+<meta property="og:site_name" content="菜鸟撸代码">
+<meta property="og:description" content="&amp;nbsp; Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。使用 Express 可以快速地搭建一个完整功能的网站。Express 框架核心特性：（1）、可以设置中间件来响应 HTTP 请求。（2）、定义了路由表用于执行不同的 HTTP 请求动作。（3）、可以通过向模板传递参数来动态渲染 HT">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230210948465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230205952325?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230210740571?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230210754219?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230210806197?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230210817876?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230211840333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230212541164?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230212553351?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230213658504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20161230213712715?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-07-04T09:11:15.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js Express 框架">
+<meta name="twitter:description" content="&amp;nbsp; Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。使用 Express 可以快速地搭建一个完整功能的网站。Express 框架核心特性：（1）、可以设置中间件来响应 HTTP 请求。（2）、定义了路由表用于执行不同的 HTTP 请求动作。（3）、可以通过向模板传递参数来动态渲染 HT">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161230210948465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/30/原-Node-js-Express-框架/"/>
+
+
+
+
+
+  <title>Node.js Express 框架 | 菜鸟撸代码</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62476198";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菜鸟撸代码</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">RETURN INFINITE</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/30/原-Node-js-Express-框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="山水子农">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://oq3e68hjw.bkt.clouddn.com/1_qq_27626333.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸟撸代码">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js Express 框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-30T21:39:22+08:00">
+                2016-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">node.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/30/原-Node-js-Express-框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/30/原-Node-js-Express-框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">&nbsp; Express 是一个基于 Node.js 平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。使用 Express 可以快速地搭建一个完整功能的网站。Express 框架核心特性：（1）、可以设置中间件来响应 HTTP 请求。（2）、定义了路由表用于执行不同的 HTTP 请求动作。（3）、可以通过向模板传递参数来动态渲染 HTML<br> 页面。</span></p>
+<a id="more"></a>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">已经在电脑D:\NodeProject\express目录下安装了express、body-parser、cookie-parser、express-generator、multer、mysql模块</span></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><img src="http://img.blog.csdn.net/20161230210948465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p></p>
+<p><strong><span style="font-family:FangSong_GB2312; font-size:14px">1、</span><span style="font-family:FangSong_GB2312; font-size:14px">请求和响应</span></strong></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">Express 应用使用回调函数的参数： request 和 response 对象来处理请求和响应的数据。</span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">以下实例中我们引入了express 模块，并在客户端发起请求后，响应字符串。</span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre name="code" class="javascript">var express = require(‘../express/node_modules/express’);<br>var app = express();<br>app.get(‘/‘, function (req, res) {<br>&nbsp; &nbsp;res.send(‘大家好！我是山水子农，正在学习express框架！’);<br>})<br>var server = app.listen(8081, function () {<br>&nbsp; var host = server.address().address<br>&nbsp; var port = server.address().port<br>&nbsp; console.log(&quot;应用实例，访问地址为 <a href="http://%s:%s&amp;quot" target="_blank" rel="external">http://%s:%s&amp;quot</a>;, host, port)</pre></p>
+<p>})</p>
+<p>执行以上代码：</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><img src="http://img.blog.csdn.net/20161230205952325?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">Request 对象 - request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。常见属性有：</span></p>
+<p>（1）、req.app：当callback为外部文件时，用req.app访问express的实例</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（2）、</span>req.baseUrl：获取路由当前安装的URL路径</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（3）、</span>req.body / req.cookies：获得「请求主体」/ Cookies</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（4）、</span>req.fresh / req.stale：判断请求是否还「新鲜」</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（5）、</span>req.hostname / req.ip：获取主机名和IP地址</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（6）、</span>req.originalUrl：获取原始请求URL</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（7）、</span>req.params：获取路由的parameters</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（8）、</span>req.path：获取请求路径</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（9）、</span>req.protocol：获取协议类型</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（10）、</span>req.query：获取URL的查询参数串</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（11）、</span>req.route：获取当前匹配的路由</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（12）、</span>req.subdomains：获取子域名</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（13）、</span>req.accpets（）：检查请求的Accept头的请求类型</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（14）、</span>req.acceptsCharsets / req.acceptsEncodings / req.acceptsLanguages</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（15）、</span>req.get（）：获取指定的HTTP请求头</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（16）、</span>req.is（）：判断请求头Content-Type的MIME类型</p>
+<p>Response 对象 - response 对象表示 HTTP 响应，即在接收到请求时向客户端发送的 HTTP 响应数据。常见属性有：</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（1）、</span>res.app：同req.app一样</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（2）、</span>res.append（）：追加指定HTTP头</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（3）、</span>res.set（）在res.append（）后将重置之前设置的头</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（4）、</span>res.cookie（name，value [，option]）：设置Cookie</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（5）、</span>opition: domain / expires / httpOnly / maxAge / path / secure / signed</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（6）、</span>res.clearCookie（）：清除Cookie</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（7）、</span>res.download（）：传送指定路径的文件</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（8）、</span>res.get（）：返回指定的HTTP头</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（9）、</span>res.json（）：传送JSON响应</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（10）、</span>res.jsonp（）：传送JSONP响应</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（11）、</span>res.location（）：只设置响应的Location HTTP头，不设置状态码或者close response</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（12）、</span>res.redirect（）：设置响应的Location HTTP头，并且设置状态码302</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（13）、</span>res.send（）：传送HTTP响应</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（14）、</span>res.sendFile（path [，options] [，fn]）：传送指定路径的文件 -会自动根据文件extension设定Content-Type</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（15）、</span>res.set（）：设置HTTP头，传入object可以一次设置多个头</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（16）、</span>res.status（）：设置HTTP状态码</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">（17）、</span>res.type（）：设置Content-Type的MIME类型</p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><strong>2、路由</strong></span></p>
+<p>&nbsp; 我们已经了解了 HTTP 请求的基本应用，而路由决定了由谁(指定脚本)去响应客户端请求。在HTTP请求中，我们可以通过路由提取出请求的URL以及GET/POST参数。接下来我们扩展上例，添加一些功能来处理更多类型的 HTTP 请求。</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_2_5394247" name="code" class="javascript">var express = require(‘../express/node_modules/express’);<br>var app = express();<br>//  主页输出 &quot;Hello World&quot;<br>app.get(‘/‘, function (req, res) {<br>   console.log(&quot;主页 GET 请求&quot;);<br>   res.send(‘Hello GET’);<br>})<br>//  POST 请求<br>app.post(‘/‘, function (req, res) {<br>   console.log(&quot;主页 POST 请求&quot;);<br>   res.send(‘Hello POST’);<br>})<br>//  /del_user 页面响应<br>app.get(‘/del_user’, function (req, res) {<br>   console.log(&quot;/del_user 响应 DELETE 请求&quot;);<br>   res.send(‘删除页面’);<br>})<br>//  /list_user 页面 GET 请求<br>app.get(‘/list_user’, function (req, res) {<br>   console.log(&quot;/list_user GET 请求&quot;);<br>   res.send(‘用户列表页面’);<br>})<br>// 对页面 abcd, abxcd, ab123cd, 等响应 GET 请求<br>app.get(‘/ab<em>cd’, function(req, res) {<br>   console.log(&quot;/ab</em>cd GET 请求&quot;);<br>   res.send(‘正则匹配’);<br>})<br>var server = app.listen(8081, function () {<br>  var host = server.address().address<br>  var port = server.address().port<br>  console.log(&quot;应用实例，访问地址为 <a href="http://%s:%s&amp;quot" target="_blank" rel="external">http://%s:%s&amp;quot</a>;, host, port)<br>})</pre><img src="http://img.blog.csdn.net/20161230210740571?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20161230210754219?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20161230210806197?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><img src="http://img.blog.csdn.net/20161230210817876?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><strong>3、静态文件</strong></span></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">&nbsp; Express 提供了内置的中间件 express.static 来设置静态文件如：图片， CSS, JavaScript 等。你可以使用 express.static 中间件来设置静态文件路径。例如，如果你将图片， CSS, JavaScript 文件放在 public 目录下，你可以这么写：</span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_3_5731720" name="code" class="javascript">app.use(express.static(‘public’));<br></pre>添加处理静态文件的代码如下所示：</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_4_6178661" name="code" class="html">var express = require(‘../express/node_modules/express’);<br>var app = express();<br>app.use(express.static(‘public’));<br>app.get(‘/‘, function (req, res) {<br>   res.send(‘大家好！我是山水子农，正在学习express的静态文件’);<br>})<br>var server = app.listen(8088, function () {<br>  var host = server.address().address<br>  var port = server.address().port<br>  console.log(&quot;应用实例，访问地址为 <a href="http://%s:%s&amp;quot" target="_blank" rel="external">http://%s:%s&amp;quot</a>;, host, port)</pre></p>
+<p>})<img src="http://img.blog.csdn.net/20161230211840333?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><strong>4、GET 方法</strong></span></p>
+<p>&nbsp; 以下实例演示了在表单中通过 GET 方法提交两个参数，我们可以使用 server.js 文件内的 process_get 路由器来处理输入，</p>
+<p>index.html 文件代码如下：</p>
+<p><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_5_7846318" name="code" class="html">&lt;html&gt;<br>&lt;body&gt;<br>&lt;form action=&quot;<a href="http://127.0.0.1:8081/process_get&amp;quot" target="_blank" rel="external">http://127.0.0.1:8081/process_get&amp;quot</a>; method=&quot;GET&quot;&gt;<br>First Name: &lt;input type=&quot;text&quot; name=&quot;first_name&quot;&gt; &lt;br&gt;&lt;br&gt;<br>Last Name: &lt;input type=&quot;text&quot; name=&quot;last_name&quot;&gt;<br>&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;<br>&lt;/form&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</pre>server.js 文件代码如下:</p>
+<pre code_snippet_id="2089199" snippet_file_name="blog_20161230_6_8500219" name="code" class="javascript">var express = require('../express/node_modules/express');
+var app = express();
+//设置静态文件
+app.use(express.static('public'));
+app.get('/index.htm', function (req, res) {
+<span style="white-space:pre">    </span>//传送指定路径的文件
+<span style="white-space:pre">    </span>//__dirname 表示当前执行脚本所在的目录。
+<span style="white-space:pre">    </span>//__filename 表示当前正在执行的脚本的文件名。
+&nbsp; &nbsp;res.sendFile( __dirname + &quot;/&quot; + &quot;index.html&quot; );//index.html路径D:\NodeProject\ExpressDemo\public\index.html
+})
+app.get('/process_get', function (req, res) {
+&nbsp; &nbsp;// 输出 JSON 格式
+&nbsp; &nbsp;response = {
+&nbsp; &nbsp; &nbsp; &nbsp;first_name:req.query.first_name,//req.query获取URL的查询参数串
+&nbsp; &nbsp; &nbsp; &nbsp;last_name:req.query.last_name
+&nbsp; &nbsp;};
+&nbsp; &nbsp;console.log(response);
+&nbsp; &nbsp;res.end(JSON.stringify(response));//传送HTTP响应
+})
+var server = app.listen(8081, function () {
+&nbsp; //server.address()操作系统返回绑定的地址，协议族名和服务器端口。
+&nbsp; var host = server.address().address
+&nbsp; var port = server.address().port
+&nbsp; console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})</pre>
+
+<p><span style="font-family:FangSong_GB2312; font-size:14px">执行以上代码：</span></p>
+<p></p>
+<p><img src="http://img.blog.csdn.net/20161230212541164?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20161230212553351?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><strong>5、POST 方法</strong></span></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">&nbsp; 以下实例演示了在表单中通过 POST 方法提交两个参数，我们可以使用 serverPost.js 文件内的 process_post 路由器来处理输入。indexPost.htm 文件代码修改如下：</span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_7_2883874" name="code" class="html">&lt;html&gt;<br>&lt;body&gt;<br>&lt;form action=&quot;<a href="http://127.0.0.1:8081/process_post&amp;quot" target="_blank" rel="external">http://127.0.0.1:8081/process_post&amp;quot</a>; method=&quot;POST&quot;&gt;<br>First Name: &lt;input type=&quot;text&quot; name=&quot;first_name&quot;&gt; &lt;br&gt;&lt;br&gt;<br>Last Name: &lt;input type=&quot;text&quot; name=&quot;last_name&quot;&gt;<br>&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;<br>&lt;/form&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</pre>serverPost.js 文件代码修改如下</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span><pre code_snippet_id="2089199" snippet_file_name="blog_20161230_8_7267529" name="code" class="javascript">var express = require(‘../express/node_modules/express’);<br>var app = express();<br>var bodyParser = require(‘../express/node_modules/body-parser’);<br>// 创建 application/x-www-form-urlencoded 编码解析<br>var urlencodedParser = bodyParser.urlencoded({ extended: false })<br>app.use(express.static(‘public’));<br>app.get(‘/indexPost.htm’, function (req, res) {<br>   res.sendFile( __dirname + &quot;/&quot; + &quot;indexPost.htm&quot; );<br>})<br>app.post(‘/process_post’, urlencodedParser, function (req, res) {<br>   // 输出 JSON 格式<br>   response = {<br>       first_name:req.body.first_name,<br>       last_name:req.body.last_name<br>   };<br>   console.log(response);<br>   res.end(JSON.stringify(response));<br>})<br>var server = app.listen(8081, function () {<br>  var host = server.address().address<br>  var port = server.address().port<br>  console.log(&quot;应用实例，访问地址为 <a href="http://%s:%s&amp;quot" target="_blank" rel="external">http://%s:%s&amp;quot</a>;, host, port)</pre></p>
+<p>})</p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px">执行以上代码：</span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><img src="http://img.blog.csdn.net/20161230213658504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"><img src="http://img.blog.csdn.net/20161230213712715?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+<p><span style="font-family:FangSong_GB2312; font-size:14px"></span></p>
+<p></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://oq3e68hjw.bkt.clouddn.com/qrcode_for_gh_f64d930b4fdc_430.jpg" alt="山水子农 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oq3e68hjw.bkt.clouddn.com/weixin.png" alt="山水子农 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oq3e68hjw.bkt.clouddn.com/zhifubao.jpg" alt="山水子农 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+            <a href="/tags/express/" rel="tag"># express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/30/原-Node-js-Web-模块/" rel="next" title="Node.js Web 模块">
+                <i class="fa fa-chevron-left"></i> Node.js Web 模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/30/原-express-快速创建一个应用的骨架/" rel="prev" title="express 快速创建一个应用的骨架">
+                express 快速创建一个应用的骨架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://oq3e68hjw.bkt.clouddn.com/1_qq_27626333.jpg"
+               alt="山水子农" />
+          <p class="site-author-name" itemprop="name">山水子农</p>
+           
+              <p class="site-description motion-element" itemprop="description">傲不可长，欲不可纵，乐不可极，志不可满。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/San-Shui" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/qq_27626333" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2502272314/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.erhai.gov.cn/ehgl/main.jsp" title="洱海流域保护局" target="_blank">洱海流域保护局</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.erhai.gov.cn/RecordErhai/index.jsp" title="洱海保护管理系统" target="_blank">洱海保护管理系统</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ynzhcs.com/" title="云南省智慧城市" target="_blank">云南省智慧城市</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山水子农</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://山水.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/12/30/原-Node-js-Express-框架/';
+          this.page.identifier = '2016/12/30/原-Node-js-Express-框架/';
+          this.page.title = 'Node.js Express 框架';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://山水.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
