@@ -8,9 +8,9 @@
         <category>Javascript</category>
       </categories>
       <tags>
-        <tag>CommonJS</tag>
         <tag>JavaScript</tag>
         <tag>requirejs</tag>
+        <tag>CommonJS</tag>
       </tags>
   </entry>
   <entry>
@@ -21,9 +21,9 @@
         <category>Javascript</category>
       </categories>
       <tags>
+        <tag>AMD</tag>
         <tag>JavaScript</tag>
         <tag>requirejs</tag>
-        <tag>AMD</tag>
       </tags>
   </entry>
   <entry>
