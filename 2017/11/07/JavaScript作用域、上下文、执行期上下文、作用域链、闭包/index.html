@@ -93,21 +93,21 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。  ###一、作用域(Sc">
+<meta name="description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript作用域、上下文、执行期上下文、作用域链、闭包">
 <meta property="og:url" content="http://yoursite.com/2017/11/07/JavaScript作用域、上下文、执行期上下文、作用域链、闭包/index.html">
 <meta property="og:site_name" content="菜鸟撸代码">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。  ###一、作用域(Sc">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。">
 <meta property="og:image" content="http://img.blog.csdn.net/20171106233713794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171107001836620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171107005729307?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171107005745513?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-11-06T17:06:27.046Z">
+<meta property="og:updated_time" content="2017-11-06T17:10:15.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript作用域、上下文、执行期上下文、作用域链、闭包">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。  ###一、作用域(Sc">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171106233713794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -413,9 +413,7 @@
 
       
         <p>&emsp;&emsp;作用域、上下文、执行期上下文、作用域链、闭包是JavaScript中关键概念之一，是JavaScript难点之一，在应聘面试时必定会问到的问题，作为前端工程师必须理解和掌握。相信大家已经阅读了很多关于这方面的文章，但是看完之后似懂非懂。在我阅读了《JavaScript高级程序设计》、《高性能的JavaScript》这两本书后，我才完全理解这些概念。</p>
-<hr>
-<p>###一、作用域(Scope)</p>
-<p>&emsp;&emsp;作用域概念是理解JavaScript的关键所在，不仅仅从性能角度，还包括从功能角度。作用域就是变量和函数的可访问范围，控制着变量和函数的可见性与生命周期，换句话说，作用域决定了代码区块中变量和其他资源的可见性。在JavaScript中变量的作用域有全局作用域和局部作用域。JavaScript采用词法作用域(lexical scoping)，也就是静态作用域。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h3 id="一、作用域-Scope"><a href="#一、作用域-Scope" class="headerlink" title="一、作用域(Scope)"></a>一、作用域(Scope)</h3><p>&emsp;&emsp;作用域概念是理解JavaScript的关键所在，不仅仅从性能角度，还包括从功能角度。作用域就是变量和函数的可访问范围，控制着变量和函数的可见性与生命周期，换句话说，作用域决定了代码区块中变量和其他资源的可见性。在JavaScript中变量的作用域有全局作用域和局部作用域。JavaScript采用词法作用域(lexical scoping)，也就是静态作用域。</p>
 <p><strong>静态作用域与动态作用域</strong></p>
 <ul>
 <li><p>词法作用域：词法作用域是指在词法分析阶段就确定了，不会改变。变量的作用域是在定义时决定而不是执行时决定，也就是说词法作用域取决于源码，通过静态分析就能确定，因此词法作用域也叫做静态作用域。</p>
@@ -462,14 +460,12 @@
 </blockquote>
 <p>3、块级作用域</p>
 <p>使用let和const关键字声明的变量，会在形成块级作用域。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">   <span class="comment">// 'if' 条件语句块不会创建一个新的作用域</span></div><div class="line">   <span class="comment">// name 在全局作用域中，因为通过 'var' 关键字定义</span></div><div class="line">   <span class="keyword">var</span> name = <span class="string">'Hammad'</span>;</div><div class="line">   <span class="comment">// likes 在局部（本地）作用域中，因为通过 'let' 关键字定义</span></div><div class="line">   <span class="keyword">let</span> likes = <span class="string">'Coding'</span>;</div><div class="line">   <span class="comment">// skills 在局部（本地）作用域中，因为通过 'const' 关键字定义</span></div><div class="line">   <span class="keyword">const</span> skills = <span class="string">'JavaScript and PHP'</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(name); <span class="comment">// logs 'Hammad'</span></div><div class="line"><span class="built_in">console</span>.log(likes); <span class="comment">// Uncaught ReferenceError: likes is not defined</span></div><div class="line"><span class="built_in">console</span>.log(skills); <span class="comment">// Uncaught ReferenceError: skills is not defined</span></div></pre></td></tr></table></figure></p>
-<p>###二、上下文(context)</p>
-<p>&emsp;&emsp;许多开发人员经常混淆作用域(scope)和上下文(context)，很多误解为它们是相同的概念。但事实并非如此。作用域(scope)我们上面已经讨论过了，而上下文(context)是用来指定代码某些特定部分中this的值。作用域(scope) 是指变量的可访问性，上下文(context)是指this在同一作用域内的值。我们也可以使用call()、apply()、bind()、箭头函数等改变上下文。在浏览器中在全局作用域(scope)中上下文中始终是Window对象。在Node.js中在全局作用域(scope)中上下文中始终是Global 对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"windowsName"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> name = <span class="string">"Cherry"</span>;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);  <span class="comment">// windowsName</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"inner:"</span> + <span class="keyword">this</span>);<span class="comment">// inner: Window</span></div><div class="line">&#125;</div><div class="line">a();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"outer:"</span> + <span class="keyword">this</span>) <span class="comment">// outer: Window</span></div></pre></td></tr></table></figure></p>
+<h3 id="二、上下文-context"><a href="#二、上下文-context" class="headerlink" title="二、上下文(context)"></a>二、上下文(context)</h3><p>&emsp;&emsp;许多开发人员经常混淆作用域(scope)和上下文(context)，很多误解为它们是相同的概念。但事实并非如此。作用域(scope)我们上面已经讨论过了，而上下文(context)是用来指定代码某些特定部分中this的值。作用域(scope) 是指变量的可访问性，上下文(context)是指this在同一作用域内的值。我们也可以使用call()、apply()、bind()、箭头函数等改变上下文。在浏览器中在全局作用域(scope)中上下文中始终是Window对象。在Node.js中在全局作用域(scope)中上下文中始终是Global 对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"windowsName"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> name = <span class="string">"Cherry"</span>;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);  <span class="comment">// windowsName</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"inner:"</span> + <span class="keyword">this</span>);<span class="comment">// inner: Window</span></div><div class="line">&#125;</div><div class="line">a();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"outer:"</span> + <span class="keyword">this</span>) <span class="comment">// outer: Window</span></div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;上下文始终坚持一个原理：<strong>this 永远指向最后调用它的那个对象</strong>，上例中调用a函数的是window，所以a函数中的this指向window对象。关于this以及改变this的指向，可以参考<a href="https://juejin.im/post/59bfe84351882531b730bac2" target="_blank" rel="external">this、apply、call、bind</a></p>
-<p>###三、作用域链(Scope Chain)</p>
-<p>&emsp;&emsp;JavaScript 中每个函数都都表示为一个函数对象（函数实例），函数对象有一个仅供 JavaScript 引擎使用的[[scope]] 属性。通过语法分析和预解析，将[[scope]] 属性指向函数定义时作用域中的所有对象集合。这个集合被称为函数的作用域链（scope chain），包含函数定义时作用域中所有可访问的数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1, num2</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sum = num1 + num2;</div><div class="line">  <span class="keyword">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="三、作用域链-Scope-Chain"><a href="#三、作用域链-Scope-Chain" class="headerlink" title="三、作用域链(Scope Chain)"></a>三、作用域链(Scope Chain)</h3><p>&emsp;&emsp;JavaScript 中每个函数都都表示为一个函数对象（函数实例），函数对象有一个仅供 JavaScript 引擎使用的[[scope]] 属性。通过语法分析和预解析，将[[scope]] 属性指向函数定义时作用域中的所有对象集合。这个集合被称为函数的作用域链（scope chain），包含函数定义时作用域中所有可访问的数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1, num2</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> sum = num1 + num2;</div><div class="line">  <span class="keyword">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;当定义 add 函数后，其作用域链就创建了。函数所在的全局作用域的全局对象被放置到 add 函数作用域链（[[scope]] 属性）中。我们可以从下图中看到作用域链的第一个对象保存的是全局对象，全局对象中保存了诸如 this , window , document 以及全局对象中的 add 函数，也就是他自己。这也就是我们可以在全局作用域下的函数中访问 window(this)，访问全局变量，访问函数自身的原因。</p>
 <p><img src="http://img.blog.csdn.net/20171106233713794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="作用域链(Scope Chain)"></p>
-<p>###四、执行期上下文(Execution Context)<br>&emsp;&emsp;执行具体的某个函数时，JS引擎在执行每个函数实例时，都会创建一个执行期上下文（Execution Context）和激活对象（active Object）（它们属于宿主对象，与函数实例执行的生命周期保持一致，也就是函数执行完成，这些对象也就被销毁了，闭包例外。）</p>
+<h3 id="四、执行期上下文-Execution-Context"><a href="#四、执行期上下文-Execution-Context" class="headerlink" title="四、执行期上下文(Execution Context)"></a>四、执行期上下文(Execution Context)</h3><p>&emsp;&emsp;执行具体的某个函数时，JS引擎在执行每个函数实例时，都会创建一个执行期上下文（Execution Context）和激活对象（active Object）（它们属于宿主对象，与函数实例执行的生命周期保持一致，也就是函数执行完成，这些对象也就被销毁了，闭包例外。）</p>
 <p>假设我们运行以下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> total = add(<span class="number">5</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;执行该函数创建一个内部对象，称为 Execution Context（执行期上下文）。执行期上下文定义了一个函数正在执行时的作用域环境。特别注意，执行期上下文和我们平常说的上下文不同，执行期上下文指的是作用域。平常说的上下文是this的取值指向。执行期上下文和函数创建时的作用域链对象  [[scope]] 区分，这是两个不同的作用域链对象。分开的原因很简单，函数定义时的作用域链对象  [[scope]] 是固定的，而 执行期上下文 会根据不同的运行时环境变化。而且该函数每执行一次，都会创建单独的 执行期上下文，因此对同一函数调用多次，会导致创建多个执行期上下文。一旦函数执行完成，执行期上下文将被销毁。</p>
 <p>&emsp;&emsp;执行期上下文对象有自己的作用域链，当创建执期行上下文时，其作用域链将使用执行函数[[scope]]属性所包含的对象（即，函数定义时的作用域链对象）进行初始化。这些值按照它们在函数中出现的顺序复制到执行期上下文作用域链中。</p>
@@ -479,7 +475,7 @@
 <p><img src="http://img.blog.csdn.net/20171107001836620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc2MjYzMzM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="激活对象(Activation Object)"></p>
 <p>&emsp;&emsp;从左往右看，第一部分是函数执行时创建的执行期上下文，它有自己的作用域链，第二部分是作用域链中的对象，索引为1的对象是从[[scope]]作用域链中复制过来的，索引为0的对象是在函数执行时创建的激活对象，第三部分是作用域链中的对象的内容Activation Object(激活对象)和Global Object(全局对象)。</p>
 <p>&emsp;&emsp;函数在执行时，每遇到一个变量，都会去执行期上下文的作用域链的顶部，执行函数的激活对象开始向下搜索，如果在第一个作用域链（即，Activation Object 激活对象）中找到了，那么就返回这个变量。如果没有找到，那么继续向下查找，直到找到为止。如果在整个执行期上下文中都没有找到这个变量，在这种情况下，该变量被认为是未定义的。这也就是为什么函数可以访问全局变量，当局部变量和全局变量同名时，会使用局部变量而不使用全局变量，以及 JavaScript 中各种看似怪异的、有趣的作用域问题的答案。</p>
-<p>###五、闭包（Closure）<br>&emsp;&emsp;闭包（Closure）是 JavaScript 最强大的特性之一，它允许函数访问局部作用域之外的数据。闭包在日常编码工作中非常常见。但是，它会对性能造成影响。了解闭包我们使用以下示例代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvents</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> id = <span class="string">"xdi9592"</span>;</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"save-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        saveDocument(id);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="五、闭包（Closure）"><a href="#五、闭包（Closure）" class="headerlink" title="五、闭包（Closure）"></a>五、闭包（Closure）</h3><p>&emsp;&emsp;闭包（Closure）是 JavaScript 最强大的特性之一，它允许函数访问局部作用域之外的数据。闭包在日常编码工作中非常常见。但是，它会对性能造成影响。了解闭包我们使用以下示例代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvents</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> id = <span class="string">"xdi9592"</span>;</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"save-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        saveDocument(id);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;assignEvents 函数为DOM元素分配一个事件处理程序。这个处理函数就是一个闭包。为了使该闭包访问id变量，必须创建一个特定的作用域链。</p>
 <p>我们一起来从作用域的角度分析一下闭包的形成过程：</p>
 <p>&emsp;&emsp;assignEvents 函数创建并且词法解析后，函数对象assignEvents的[[scope]]属性被初始化，作用域链形成，作用域链中包含了全局对象的所有属性和方法（注意，此时因为 assignEvents 函数还未被执行，所以闭包函数并没有被解析）。</p>
@@ -644,8 +640,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://oq3e68hjw.bkt.clouddn.com/1_qq_27626333.jpg"
@@ -758,6 +763,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、作用域-Scope"><span class="nav-number">1.1.</span> <span class="nav-text">一、作用域(Scope)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、上下文-context"><span class="nav-number">1.2.</span> <span class="nav-text">二、上下文(context)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、作用域链-Scope-Chain"><span class="nav-number">1.3.</span> <span class="nav-text">三、作用域链(Scope Chain)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、执行期上下文-Execution-Context"><span class="nav-number">1.4.</span> <span class="nav-text">四、执行期上下文(Execution Context)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、闭包（Closure）"><span class="nav-number">1.5.</span> <span class="nav-text">五、闭包（Closure）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
